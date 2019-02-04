@@ -18,7 +18,7 @@ def parse_input():
     with open('2018/input02.txt', 'r') as file:
         for line in file:
             if len(line) > 0:
-                input.append(line)
+                input.append(line.strip())
 
 def part1():
     twice_count = 0
@@ -29,11 +29,10 @@ def part1():
         count = {} # map a character to its count
 
         for char in line:
-            if char != '\n':
-                if char in count:
-                    count[char] += 1
-                else:
-                    count[char] = 1
+            if char in count:
+                count[char] += 1
+            else:
+                count[char] = 1
         
         for key in count:
             if count[key] == 2 and not twice_seen:

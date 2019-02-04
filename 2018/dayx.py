@@ -21,7 +21,7 @@ def parse_input():
     with open('2018/inputx.txt', 'r') as file:
         for line in file:
             if len(line) > 0:
-                input.append(line)
+                input.append(line.strip())
 
 
 def part1():
