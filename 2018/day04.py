@@ -1,4 +1,3 @@
-import argparse
 import datetime
 import re
 
@@ -10,24 +9,10 @@ class Event:
         self.date = datetime.datetime(year, month, day, hour, minute)
         self.text = text
 
-    def __str__(self):
-        return '[%s] %s' % (self.date, self.text)
-
-    def __repr__(self):
-        return str(self)
-
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--part', dest='part', type=int)
-    args = parser.parse_args()
-    if args.part == 1 or args.part == 2:
-        parse_input()
-
-    if args.part == 1:
-        part1()
-    elif args.part == 2:
-        part2()
+    parse_input()
+    solve()
 
 
 def parse_input():
@@ -48,7 +33,7 @@ def parse_input():
         input.sort(key=lambda e: e.date)
 
 
-def part1():
+def solve():
     guard_id = None
     prev_date = None
     record = {}  # map a guard_id to a list that represents their sleep schedule
@@ -83,12 +68,25 @@ def part1():
     schedule = record[sleepy_guard]
     max_minute = schedule.index(max(schedule))
 
-    print('guard: %s, minute: %d, multiply: %d' %
+    print('[part1] guard: %s, minute: %d, multiply: %d' %
           (sleepy_guard, max_minute, int(sleepy_guard) * max_minute))
 
+    # get the max sleep and the minute of each guard
+    max_sleep = 0
+    max_sleep_minute = 0
+    max_sleep_guard_id = 0
+    for guard_id in record:
+        schedule = record[guard_id]
+        curr_max_sleep = max(schedule)
+        if curr_max_sleep > max_sleep:
+            max_sleep_minute = schedule.index(curr_max_sleep)
+            max_sleep = curr_max_sleep
+            max_sleep_guard_id = guard_id
 
-def part2():
-    print('part 2')
+    print(
+        '[part2] guard: %s, minute: %d, multiply: %d' %
+        (max_sleep_guard_id, max_sleep_minute, int(max_sleep_guard_id) *
+         max_sleep_minute))
 
 
 main()
