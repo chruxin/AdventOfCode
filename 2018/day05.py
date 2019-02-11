@@ -58,14 +58,14 @@ def part1(input):
             #                        |--------------------------------|
             #                             |----------------------|
             #                                  |------------|
-            #  [ ............ str ............ _ ]   X x   [_ ............ rest of input ............]
-            #                                 ⬆️    ⬆️️      ⬆️
-            #                                left   i     right
-            #                         |-- j --|            |-- j --|
-            #                        ⬆️                             ⬆️
-            #                 curr_left_index                curr_right_index
-            #                                                        ⬆️
-            #  [ ..... new_str .....]                             updated i
+            #  [ ............ str ............ _ ]   X x  [ _ ............ rest of input ............]
+            #                                  ⬆️    ⬆️️     ⬆️
+            #                                left    i     right
+            #                         |-- j --|              |-- j --|
+            #                        ⬆️                               ⬆️
+            #                 curr_left_index                  curr_right_index
+            #                                                           ⬆️
+            #  [ ..... new_str .....]                                updated i
             for j in range(0, num):
                 curr_left_index = left - j
                 curr_right_index = right + j
