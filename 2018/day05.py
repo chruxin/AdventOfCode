@@ -43,7 +43,7 @@ def part1(input):
             # two characters react
             # check if more reactions can happen after current pair destroys
 
-            # to the left, we have str[len(str)-2] --> str[0]
+            # to the left, we have str[len(str)-1] --> str[0]
             num_left = len(str)
             # to the right, input[i+2] --> input[len(input)-1]
             num_right = len(input) - (i + 2)
